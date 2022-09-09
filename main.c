@@ -33,22 +33,23 @@ int calculateProduct(int denomination_num, int denomination_price)
 
 /**
  * 
- * @brief This function calculates the sum of the amount of denominations, given their inputted price. It subtracts it from current_php.
+ * @brief This calculates the the next current amount for the calculations by subtracting the last current amount by the product of the denominations before it.
  * 
  * INPUT
  * -----
- * current_php (int) : the current amount of php
+ * previous_php (int) : the previous current amount of php
  * denomination_num (int) : the amount of a specific denomination
  * denomination_price (int) : the price of a specific denomination
  * 
  * OUTPUT
  * ------
- * int : the current_php minus the product of the number of denominations & its price
+ * new_current_php (int) : the previous_php minus the product of the number of denominations & its price
  * 
  */
-int calculateCurrentPHP(int current_php, int denomination_num, int denomination_price)
+int calculateCurrentPHP(int previous_php, int denomination_num, int denomination_price)
 {
-    return current_php - (denomination_num * denomination_price);
+    int new_current_php = previous_php - (denomination_num * denomination_price);
+    return new_current_php;
 }
 
 
