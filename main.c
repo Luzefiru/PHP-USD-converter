@@ -14,7 +14,34 @@
 
 int main(void)
 {
-    
+    float usd, php, thousand, five_hundred, one_hundred, twenty, five, one, sum;
+
+    /* asks for price in USD */
+    printf("Enter amount (USD): ");
+    scanf("%f", &usd);
+
+    /* displays the raw values after converting to PHP */
+    printf("Amount (USD): $%.2f\n", usd);
+    printf("Amount (Peso): Php %.2f\n\n", php);
+
+    /* floor divides by each denominator to get the number of each */
+
+    // to be done
+
+    /* displays the count & price of each denomination to get to the truncated raw value of PHP */
+    printf("Denomination\n");
+    printf("1000 peso bill = \n");
+    printf("500 peso bill = \n");
+    printf("100 peso bill = \n");
+    printf("20 peso bill = \n");
+    printf("5 peso coin = \n");
+    printf("1 peso coin = \n");
+
+    /* prints the total sum of the converted denominations */
+    printf("\nTOTAL: Php %.2f", sum);
+
+
+
 
     return 0;
 }
