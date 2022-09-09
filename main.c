@@ -63,10 +63,9 @@ int main(void)
 
     /* converts USD to PHP */
     php = usd * CONVERSION_RATE_USD_TO_PHP;
-    printf("%f", php);
 
     /* displays the raw values after converting to PHP */
-    printf("Amount (USD): $%.2f\n", usd);
+    printf("\nAmount (USD): $%.2f\n", usd);
     printf("Amount (Peso): Php %.2f\n\n", php);
 
     /* truncates the decimal points to convert to denominations */
@@ -93,19 +92,23 @@ int main(void)
         + calculateProduct(twenty, 20) + calculateProduct(five, 5) + calculateProduct(one, 1);
 
     /* displays the count & price of each denomination to get to the truncated raw value of PHP */
-    printf("Denomination\n");
-    printf("1000 peso bill = %d\n", thousand);
-    printf("500 peso bill = %d\n", five_hundred);
-    printf("100 peso bill = %d\n", one_hundred);
-    printf("20 peso bill = %d\n", twenty);
-    printf("5 peso coin = %d\n", five);
-    printf("1 peso coin = %d\n", one);
+    printf("DENOMINATIONS:\n");
+    printf("1000 peso bill = %d = Php %d.00\n",
+    thousand, calculateProduct(thousand, 1000));
+    printf("500 peso bill = %d = Php %d.00\n",
+    five_hundred, calculateProduct(five_hundred, 500));
+    printf("100 peso bill = %d = Php %d.00\n",
+    one_hundred, calculateProduct(one_hundred, 100));
+    printf("20 peso bill = %d = Php %d.00\n",
+    twenty, calculateProduct(twenty, 20));
+    printf("5 peso coin = %d = Php %d.00\n",
+    five, calculateProduct(five, 5));
+    printf("1 peso coin = %d = Php %d.00\n",
+    one,  calculateProduct(one, 1));
 
     /* prints the total sum of the converted denominations */
-    printf("\nTOTAL: Php %d.00", sum);
+    printf("\nTOTAL: Php %d.00\n", sum);
 
-
-
-
+    system("pause");
     return 0;
 }
