@@ -12,33 +12,97 @@
 
 #define CONVERSION_RATE_USD_TO_PHP 49.2
 
+/**
+ * 
+ * @brief This function calculates the sum of the amount of denominations, given their inputted price.
+ * 
+ * INPUT
+ * -----
+ * denomination_num (int) : the amount of a specific denomination
+ * denomination_price (int) : the price of a specific denomination
+ * 
+ * OUTPUT
+ * ------
+ * int : the product of the number of denominations & its price
+ * 
+ */
+int calculateProduct(int denomination_num, int denomination_price)
+{
+    return denomination_num * denomination_price;
+}
+
+/**
+ * 
+ * @brief This function calculates the sum of the amount of denominations, given their inputted price. It subtracts it from current_php.
+ * 
+ * INPUT
+ * -----
+ * current_php (int) : the current amount of php
+ * denomination_num (int) : the amount of a specific denomination
+ * denomination_price (int) : the price of a specific denomination
+ * 
+ * OUTPUT
+ * ------
+ * int : the current_php minus the product of the number of denominations & its price
+ * 
+ */
+int calculateCurrentPHP(int current_php, int denomination_num, int denomination_price)
+{
+    return current_php - (denomination_num * denomination_price);
+}
+
+
 int main(void)
 {
-    float usd, php, thousand, five_hundred, one_hundred, twenty, five, one, sum;
+    float usd, php;
+    int sum, thousand, five_hundred, one_hundred, twenty, five, one;
 
     /* asks for price in USD */
     printf("Enter amount (USD): ");
     scanf("%f", &usd);
 
+    /* converts USD to PHP */
+    php = usd * CONVERSION_RATE_USD_TO_PHP;
+    printf("%f", php);
+
     /* displays the raw values after converting to PHP */
     printf("Amount (USD): $%.2f\n", usd);
     printf("Amount (Peso): Php %.2f\n\n", php);
 
-    /* floor divides by each denominator to get the number of each */
+    /* truncates the decimal points to convert to denominations */
+    php = (int) php;
 
-    // to be done
+    /* floor divides by each denominator to get the number of each */
+    int current_php = php; // the price at the moment
+
+    thousand = current_php / 1000;
+    current_php = calculateCurrentPHP(current_php, thousand, 1000);
+    five_hundred = current_php / 500;
+    current_php = calculateCurrentPHP(current_php, five_hundred, 500);
+    one_hundred = current_php / 100;
+    current_php = calculateCurrentPHP(current_php, one_hundred, 100);
+    twenty = current_php / 20;
+    current_php = calculateCurrentPHP(current_php, twenty, 20);
+    five = current_php / 5;
+    current_php = calculateCurrentPHP(current_php, five, 5);
+    one = current_php / 1;
+    current_php = calculateCurrentPHP(current_php, one, 1);
+    
+    /* calculates the sum of all denominations */
+    sum = calculateProduct(thousand, 1000) + calculateProduct(five_hundred, 500) + calculateProduct(one_hundred, 100)
+        + calculateProduct(twenty, 20) + calculateProduct(five, 5) + calculateProduct(one, 1);
 
     /* displays the count & price of each denomination to get to the truncated raw value of PHP */
     printf("Denomination\n");
-    printf("1000 peso bill = \n");
-    printf("500 peso bill = \n");
-    printf("100 peso bill = \n");
-    printf("20 peso bill = \n");
-    printf("5 peso coin = \n");
-    printf("1 peso coin = \n");
+    printf("1000 peso bill = %d\n", thousand);
+    printf("500 peso bill = %d\n", five_hundred);
+    printf("100 peso bill = %d\n", one_hundred);
+    printf("20 peso bill = %d\n", twenty);
+    printf("5 peso coin = %d\n", five);
+    printf("1 peso coin = %d\n", one);
 
     /* prints the total sum of the converted denominations */
-    printf("\nTOTAL: Php %.2f", sum);
+    printf("\nTOTAL: Php %d.00", sum);
 
 
 
